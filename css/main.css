@@ -1,6 +1,14 @@
-.GDLScreenFooter {
-    top: 90%;
+.sexItUpFooter {
     position: fixed;
-    left: 42%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: darkgrey;
+    color: black;
+    text-align: center;
     opacity: 0.6;
+}
+
+.index {
+    text-align: center;
 }

@@ -27,16 +27,17 @@ $(document).ready(() => {
 	{
             "Name": "",
             "Sex": "",
-            "Hytte": "",
-            "Tjans1": "",
-            "Tjans2": "",
             "Bus": "",
-            "Slutrengoering": "",
-            "Tjansdag": "",
-            "Tjans2dag": ""
+            "Cabin": "",
+            "Chore1": "",
+            "Chore1Day": "",
+            "Chore2": "",
+            "Chore2Day": "",
+            "FinalCleaning": ""
         },
 	 */
-	let	participants = [{
+	let	participants = [
+		{
             "Name": "",
             "Sex": "",
             "Hytte": "",
