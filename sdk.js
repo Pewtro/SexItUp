@@ -2,16 +2,16 @@ $(document).ready(() => {
 
 	/*
 	 * TODO: 
-	 * 1. Initial index.html with link to Guide.html and SexItUp.html on github pages
+	 ** 1. Initial index.html with link to Guide.html and SexItUp.html on github pages
 	 * 2. Create possibility to upload CSV file: https://www.youtube.com/watch?v=ZZncFax8yNY
 	 * 	2.1. Ensure that participants variable is populated with the information and saved in localStorage or sessionStorage
-	 * 	2.2. Create button to read/write from/to localStorage/sessionStorage if necessary¨
-	 * 	2.3. Update .gitignore to not upload the real data .csv, but to maintain the fake.csv 
+	 * 	2.2. Create button to read/write from/to localStorage/sessionStorage if necessary
+	 * 	2.3. Update .	gitignore to not upload the real data .csv, but to maintain the fake.csv
 	 * 3. Create a reset button to remove all information 
 	 * 4. Populate a table with the read information and have it accessible only through SexItUp page -- separate page? or modal?
 	 * 5. Refactor individual distribution modules to english and better code
 	 * 	5.1. Cabins
-	 * 	5.2. Busses
+	 * 	5.2. Buses
 	 * 	5.3. Final Cleaning
 	 * 	5.4. Chore 1 and 2 + Associated days
 	 * 		5.4.1. Ensure that it cannot distribute chores on the same days
@@ -21,33 +21,6 @@ $(document).ready(() => {
 
 	const debug = false;
 
-	/** DEPRECATED ONCE CSV FILES CAN BE UPLOADED
-	 * The JSON format that needs to be used:
-	 * Use the accompanying excel file to create necessary data
-	{
-            "Name": "",
-            "Sex": "",
-            "Bus": "",
-            "Cabin": "",
-            "Chore1": "",
-            "Chore1Day": "",
-            "Chore2": "",
-            "Chore2Day": "",
-            "FinalCleaning": ""
-        },
-	 */
-	let	participants = [
-		{
-            "Name": "",
-            "Sex": "",
-            "Hytte": "",
-            "Tjans1": "",
-            "Tjans2": "",
-            "Bus": "",
-            "Slutrengoering": "",
-            "Tjansdag": "",
-            "Tjans2dag": ""
-		},];
 	/** The names of the busses */
 	const Bus1 = "Fremtiden";
 	const Bus2 = "Fortiden";
@@ -155,11 +128,13 @@ $(document).ready(() => {
 
 	/** Hytte fordeling */
 	$("#FordelHytter").click(() => {
+		const participants = JSON.parse(sessionStorage.getItem("Participants"));
+		console.log(participants);
 		const antalDrengeHytter = listeAfDrengeHytter.length;
 		for (i = 0; i < participants.length; i++) {
 			if (participants[i].Sex === "K") {
 				if (HyttePiger[0] < HyttePiger[1]) {
-					participants[i].Hytte = HyttePiger[2];
+					participants[i].Cabin = HyttePiger[2];
 					HyttePiger[0] += 1;
 				} else {
 					console.warn("Too many girls")
@@ -168,7 +143,7 @@ $(document).ready(() => {
 				const randomizer = Math.floor(Math.random() * antalDrengeHytter);
 				const valgtHytte = listeAfDrengeHytter[randomizer];
 				if (tjekHytte(valgtHytte)) {
-					participants[i].Hytte = valgtHytte;
+					participants[i].Cabin = valgtHytte;
 					opdaterHytter(valgtHytte)
 				} else {
 					let hytteAssigned = false;
@@ -190,6 +165,8 @@ $(document).ready(() => {
 				}
 			}
 		}
+		console.log("Session storage updated with cabin distribution");
+		sessionStorage.setItem("Participants", JSON.stringify(participants));
 	});
 
 	function opdaterTjanser(tjanseNavn, i, tjansNr) {
@@ -315,7 +292,7 @@ $(document).ready(() => {
 	/** Tjanse fordeling */
 	$("#FordelTjanser").click(() => {
 		for (i = 0; i < participants.length; i++) {
-            if (remainingTjanser === 0) {
+			if (remainingTjanser === 0) {
 				break;
 			}
 			const tjanseRandomizer = Math.floor(Math.random() * antalTjanser);
@@ -340,12 +317,12 @@ $(document).ready(() => {
 				}
 			}
 		}
-    });
-    
+	});
+
 	/** Tjanse2 fordeling */
 	$("#FordelTjanserTo").click(() => {
 		for (i = 0; i < participants.length; i++) {
-            if (remainingTjanser === 0) {
+			if (remainingTjanser === 0) {
 				console.log("We had to break the loop with ", remainingTjanser, " tjanser remaining");
 				break;
 			}
@@ -447,5 +424,4 @@ $(document).ready(() => {
 	$("#localStorage").click(() => {
 		sessionStorage.setItem("Participants", JSON.stringify(participants));
 	});
-
 });
