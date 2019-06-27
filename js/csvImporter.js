@@ -74,4 +74,75 @@ function processData(csv) {
 	}
 	debug && console.log(participants);
 	sessionStorage.setItem("Participants", JSON.stringify(participants));
+
+	generatetabel(participants);
+
+}
+
+function cleardata() {
+	sessionStorage.clear();
+}
+
+function generatetabel(participants) {
+
+	for(let i = 0; i<participants.length; i++){
+		console.log(participants[i].Name);
+	}
+
+	let div = document.getElementById("tablecontent");
+	var table = document.createElement("table");
+
+	div.appendChild(table);
+
+	table.style.width = "100%";
+
+	let headers = ["Navn", "Bus", "Cabin", "Chore & Day", "Chore 2 & Day", "Final Cleaning"];
+
+	var row = table.insertRow(0);
+	var cell;
+
+	for(let i = 0; i<headers.length; i++){
+		var th = document.createElement("th");
+		th.style.border = "1px solid #ddd";
+		th.style.padding = "8px";
+		th.innerText = headers[i];
+		row.appendChild(th);
+	}
+
+	var rowdata;
+
+	for(var j = 0; j<participants.length; j++){
+		var row = table.insertRow(-1);
+
+		for(let h = 0; h<headers.length; h++){
+			var td = document.createElement("td");
+
+			let value;
+
+			switch (h) {
+				case 0: value = participants[j].Name;
+					break;
+				case 1: value = participants[j].Bus;
+					break;
+				case 2: value = participants[j].Cabin;
+					break;
+				case 3: value = participants[j].Chore1 + " og " + participants[j].Chore1Day;
+					break;
+				case 4: value = participants[j].Chore2 + " og " + participants[j].Chore2Day;
+					break;
+				case 5: value = participants[j].FinalCleaning;
+					break;
+
+			}
+
+			td.innerText = value;
+
+			td.style.border = "1px solid #ddd";
+			td.style.padding = "8px";
+
+			row.appendChild(td);
+		}
+
+	}
+
 }

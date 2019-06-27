@@ -2,13 +2,13 @@ $(document).ready(() => {
 
 	/*
 	 * TODO: 
-	 ** 1. Initial index.html with link to Guide.html and SexItUp.html on github pages
-	 * 2. Create possibility to upload CSV file: https://www.youtube.com/watch?v=ZZncFax8yNY
+	 ** 1. Initial index.html with link to Guide.html and SexItUp.html on github pages DONE
+	 * 2. Create possibility to upload CSV file: https://www.youtube.com/watch?v=ZZncFax8yNY DONE
 	 * 	2.1. Ensure that participants variable is populated with the information and saved in localStorage or sessionStorage
 	 * 	2.2. Create button to read/write from/to localStorage/sessionStorage if necessary
 	 * 	2.3. Update .	gitignore to not upload the real data .csv, but to maintain the fake.csv
-	 * 3. Create a reset button to remove all information 
-	 * 4. Populate a table with the read information and have it accessible only through SexItUp page -- separate page? or modal?
+	 * 3. Create a reset button to remove all information DONE
+	 * 4. Populate a table with the read information and have it accessible only through SexItUp page -- separate page? or modal? DONE
 	 * 5. Refactor individual distribution modules to english and better code
 	 * 	5.1. Cabins
 	 * 	5.2. Buses
@@ -128,7 +128,7 @@ $(document).ready(() => {
 
 	/** Hytte fordeling */
 	$("#FordelHytter").click(() => {
-		const participants = JSON.parse(sessionStorage.getItem("Participants"));
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		console.log(participants);
 		const antalDrengeHytter = listeAfDrengeHytter.length;
 		for (i = 0; i < participants.length; i++) {
@@ -155,7 +155,7 @@ $(document).ready(() => {
 						}
 						let hytteFound = listeAfDrengeHytter[k];
 						if (tjekHytte(hytteFound)) {
-							participants[i].Hytte = hytteFound;
+							participants[i].Cabin = hytteFound;
 							opdaterHytter(hytteFound);
 							hytteAssigned = true;
 						} else {
@@ -170,6 +170,7 @@ $(document).ready(() => {
 	});
 
 	function opdaterTjanser(tjanseNavn, i, tjansNr) {
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		let fundenTjans = null;
 		let tjansDag = null;
 		if (tjanseNavn === "kioskOpfyldningLørdag") {
@@ -242,11 +243,11 @@ $(document).ready(() => {
 			tjansDag = rengoringUdenforMandag[3];
 		}
 		if (tjansNr === 1) {
-			participants[i].Tjans1 = fundenTjans;
-			participants[i].Tjansdag = tjansDag;
+			participants[i].Chore1 = fundenTjans;
+			participants[i].Chore1Day = tjansDag;
 		} else {
-			participants[i].Tjans2 = fundenTjans;
-			participants[i].Tjans2dag = tjansDag;
+			participants[i].Chore2 = fundenTjans;
+			participants[i].Chore2Day = tjansDag;
 		}
 		remainingTjanser -= 1;
 	}
@@ -291,6 +292,7 @@ $(document).ready(() => {
 
 	/** Tjanse fordeling */
 	$("#FordelTjanser").click(() => {
+		let participants = JSON.parse(sessionStorage.getItem("Participants"));
 		for (i = 0; i < participants.length; i++) {
 			if (remainingTjanser === 0) {
 				break;
@@ -317,10 +319,13 @@ $(document).ready(() => {
 				}
 			}
 		}
+
+		generatetabel(participants);
 	});
 
 	/** Tjanse2 fordeling */
 	$("#FordelTjanserTo").click(() => {
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		for (i = 0; i < participants.length; i++) {
 			if (remainingTjanser === 0) {
 				console.log("We had to break the loop with ", remainingTjanser, " tjanser remaining");
@@ -362,7 +367,7 @@ $(document).ready(() => {
 			slutRengoringKokken[0]++;
 			fundenSlutTjans = slutRengoringKokken[2];
 		}
-		participants[i].Slutrengoring = fundenSlutTjans;
+		participants[i].FinalCleaning = fundenSlutTjans;
 	}
 
 	function tjekSlutTjans(tjanseNavn) {
@@ -377,6 +382,7 @@ $(document).ready(() => {
 
 	/** Fordeling af slutrengøring */
 	$("#FordelSlutrengøring").click(() => {
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		for (i = 0; i < participants.length; i++) {
 			const slutTjanseRandomizer = Math.floor(Math.random() * antalSlutTjanser);
 			const valgtSlutTjans = listeAfSlutrengoring[slutTjanseRandomizer];
@@ -404,6 +410,7 @@ $(document).ready(() => {
 
 	/** Fordeling i busserne */
 	$("#FordelBusserne").click(() => {
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		for (i = 0; i < participants.length; i++) {
 			if (busNr === 1) {
 				participants[i].Bus = Bus1;
@@ -416,6 +423,7 @@ $(document).ready(() => {
 	});
 
 	$("#Log").click(() => {
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		console.log(participants);
 		console.log(remainingTjanser);
 		console.log(opvaskFrokostMandag);
@@ -424,4 +432,68 @@ $(document).ready(() => {
 	$("#localStorage").click(() => {
 		sessionStorage.setItem("Participants", JSON.stringify(participants));
 	});
+
+	function generatetabel(participants) {
+
+		for(let i = 0; i<participants.length; i++){
+			console.log(participants[i].Name);
+		}
+
+		let div = document.getElementById("tablecontent");
+		var table = document.createElement("table");
+
+		div.appendChild(table);
+
+		table.style.width = "100%";
+
+		let headers = ["Navn", "Bus", "Cabin", "Chore & Day", "Chore 2 & Day", "Final Cleaning"];
+
+		var row = table.insertRow(0);
+		var cell;
+
+		for(let i = 0; i<headers.length; i++){
+			var th = document.createElement("th");
+			th.style.border = "1px solid #ddd";
+			th.style.padding = "8px";
+			th.innerText = headers[i];
+			row.appendChild(th);
+		}
+
+		var rowdata;
+
+		for(var j = 0; j<participants.length; j++){
+			var row = table.insertRow(-1);
+
+			for(let h = 0; h<headers.length; h++){
+				var td = document.createElement("td");
+
+				let value;
+
+				switch (h) {
+					case 0: value = participants[j].Name;
+						break;
+					case 1: value = participants[j].Bus;
+						break;
+					case 2: value = participants[j].Cabin;
+						break;
+					case 3: value = participants[j].Chore1 + " og " + participants[j].Chore1Day;
+						break;
+					case 4: value = participants[j].Chore2 + " og " + participants[j].Chore2Day;
+						break;
+					case 5: value = participants[j].FinalCleaning;
+						break;
+
+				}
+
+				td.innerText = value;
+
+				td.style.border = "1px solid #ddd";
+				td.style.padding = "8px";
+
+				row.appendChild(td);
+			}
+
+		}
+
+	}
 });
