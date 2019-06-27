@@ -82,10 +82,9 @@
 			/** */
 			function genListe() {
 				const doc = new jsPDF();
-				const data = JSON.parse(sessionStorage.getItem("Deltagere"));
+				const data = JSON.parse(sessionStorage.getItem("Participants"));
 				for (let i = 0; i < data.length; i++) {
 					doc.setFontSize(20);
-
 				}
 				doc.save("GDLListe.pdf");
 
@@ -115,7 +114,15 @@
 </head>
 <body style="margin-left: 5%">
 <main>
-    <h1 style="text-align: center"> SEX IT UP </h1>
+    <div style="text-align: center; margin-left: -5%">
+        <h1> SEX IT UP </h1>
+        <a href="guide.html">
+            <button type="button" class="btn btn-default">Guide</button>
+        </a>
+        <a href="index.html">
+            <button type="button" class="btn btn-default">Back to index</button>
+        </a>
+    </div>
     <hr style="margin-left: -6%">
     <div class="container">
         <div class="row">
@@ -132,9 +139,7 @@
                 <br>
                 <button type="button" class="btn btn-default" id="FordelSlutrengøring">Fordel Slutrengøring</button>
                 <br><br>
-                <a href="guide.html">
-                    <button type="button" class="btn btn-default">Guide</button>
-                </a>
+
                 <button type="button" class="btn btn-default" id="Log">Log</button>
                 <br><br><br>
                 <button type="button" class="btn btn-default" id="localStorage">Gem i local storage</button>
@@ -145,17 +150,13 @@
                 <br><br>
                 <a href="javascript:genListe()">Download GDL Liste</a>
                 <br><br>
-                <a href="index.html">
-                    <button type="button" class="btn btn-default">Back to index</button>
-                </a>
-                <br><br>
                 <div id="jsonAdvarsel"></div>
                 <br>
                 <div id="jsonText"></div>
             </div>
             <div class="col-lg-8">
                 <div class="row">
-                    <h3>CSV IMPORTER HER</h3>
+                    <h3>CSV IMPORT</h3>
                     <label class="btn btn-primary" for="my-file-selector">
                         <input id="my-file-selector" type="file" style="display:none;"
                                onchange="handleFile(this.files)" accept=".csv">
@@ -164,7 +165,6 @@
                     <label class="btn btn-primary" for="reset-data">
                         <button id="reset-data" style="display:none;" onclick=console.log("RESETTING")></button>
                         Reset - NOT YET DOING ANYTHING
-
                     </label>
                 </div>
                 <br>
@@ -195,7 +195,7 @@
                         <td>Bus 2 Name</td>
                         <td>Cabin 2</td>
                         <td>Chore - Wednesday</td>
-                        <td>Chore 2 - Thursday</td>
+                        <td> Chore 2 - Thursday</td>
                         <td>Inside</td>
                     </tr>
                     <tr>

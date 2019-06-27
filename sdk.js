@@ -3,10 +3,10 @@ $(document).ready(() => {
 	/*
 	 * TODO: 
 	 ** 1. Initial index.html with link to Guide.html and SexItUp.html on github pages
-	 * 2. Create possibility to upload CSV file: https://www.youtube.com/watch?v=ZZncFax8yNY
+	 ** 2. Create possibility to upload CSV file: https://www.youtube.com/watch?v=ZZncFax8yNY
 	 * 	2.1. Ensure that participants variable is populated with the information and saved in localStorage or sessionStorage
 	 * 	2.2. Create button to read/write from/to localStorage/sessionStorage if necessary
-	 * 	2.3. Update .	gitignore to not upload the real data .csv, but to maintain the fake.csv
+	 * 	2.3. Update .gitignore to not upload the real data .csv, but to maintain the fake.csv
 	 * 3. Create a reset button to remove all information 
 	 * 4. Populate a table with the read information and have it accessible only through SexItUp page -- separate page? or modal?
 	 * 5. Refactor individual distribution modules to english and better code
