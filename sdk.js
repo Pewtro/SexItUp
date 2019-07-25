@@ -86,6 +86,8 @@ $(document).ready(() => {
 
 	let k, i;
 
+
+
 	function opdaterHytter(hytteNavn) {
 		if (hytteNavn === "Hytte B1") {
 			HytteB1[0]++;
@@ -245,11 +247,14 @@ $(document).ready(() => {
 		if (tjansNr === 1) {
 			participants[i].Chore1 = fundenTjans;
 			participants[i].Chore1Day = tjansDag;
+			sessionStorage.setItem("Participants", JSON.stringify(participants));
 		} else {
 			participants[i].Chore2 = fundenTjans;
 			participants[i].Chore2Day = tjansDag;
+			sessionStorage.setItem("Participants", JSON.stringify(participants));
 		}
 		remainingTjanser -= 1;
+
 	}
 
 	function tjekTjans(tjanseNavn) {
@@ -292,7 +297,7 @@ $(document).ready(() => {
 
 	/** Tjanse fordeling */
 	$("#FordelTjanser").click(() => {
-		let participants = JSON.parse(sessionStorage.getItem("Participants"));
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		for (i = 0; i < participants.length; i++) {
 			if (remainingTjanser === 0) {
 				break;
@@ -319,9 +324,6 @@ $(document).ready(() => {
 				}
 			}
 		}
-
-		generateTable(participants);
-	});
 
 	/** Tjanse2 fordeling */
 	$("#FordelTjanserTo").click(() => {
@@ -356,6 +358,7 @@ $(document).ready(() => {
 	});
 
 	function opdaterSlutTjanser(tjanseNavn, i) {
+		var participants = JSON.parse(sessionStorage.getItem("Participants"));
 		let fundenSlutTjans = null;
 		if (tjanseNavn === "slutRengøringIndenfor") {
 			slutRengoringIndenfor[0]++;
@@ -368,6 +371,11 @@ $(document).ready(() => {
 			fundenSlutTjans = slutRengoringKokken[2];
 		}
 		participants[i].FinalCleaning = fundenSlutTjans;
+		console.log(fundenSlutTjans);
+		sessionStorage.clear();
+		sessionStorage.setItem("Participants", JSON.stringify(participants));
+		console.log(participants[i].FinalCleaning);
+
 	}
 
 	function tjekSlutTjans(tjanseNavn) {
@@ -382,8 +390,9 @@ $(document).ready(() => {
 
 	/** Fordeling af slutrengøring */
 	$("#FordelSlutrengøring").click(() => {
-		var participants = JSON.parse(sessionStorage.getItem("Participants"));
-		for (i = 0; i < participants.length; i++) {
+		const participants = JSON.parse(sessionStorage.getItem("Participants"));
+
+		for (var i = 0; i < participants.length; i++) {
 			const slutTjanseRandomizer = Math.floor(Math.random() * antalSlutTjanser);
 			const valgtSlutTjans = listeAfSlutrengoring[slutTjanseRandomizer];
 			if (tjekSlutTjans(valgtSlutTjans)) {
@@ -406,6 +415,7 @@ $(document).ready(() => {
 				}
 			}
 		}
+
 	});
 
 	/** Fordeling i busserne */
