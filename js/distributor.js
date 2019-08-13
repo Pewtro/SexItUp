@@ -1,62 +1,74 @@
-const distributorDebug = true;
-
 /** The names of the busses */
-const Bus1 = "Fremtiden";
-const Bus2 = "Fortiden";
+const Bus1 = ["Afterski", []];
+const Bus2 = ["Til søs", []];
 const listOfBuses = [Bus1, Bus2];
 
-/* Det første tal er nuværende antal på den givne tjans/hytte, det andet tal er maks */
+/**
+ * 1. The first number in the array is the current amount of people assigned.
+ * 2. The second number in the array is the maximum possible amount of people assigned.
+ * 3. The third value is the name of the chore or cabin
+ * 4. The fourth value is the day the chore is happening
+ * 5. The fifth value is the meeting time for the given chore
+ * 6. The sixth value is the names of the participants on the given activity
+ */
 /** Kiosk refill */
-let kioskRefillDay1 = [0, 4, "Kiosk Opfyldning", "Lørdag"];
-let kioskRefillDay2 = [0, 4, "Kiosk Opfyldning", "Søndag"];
-let kioskRefillDay3 = [0, 4, "Kiosk Opfyldning", "Mandag"];
+let kioskRefillDay1 = [0, 4, "Kiosk Opfyldning", "Fredag", "Hele dagen", []];
+let kioskRefillDay2 = [0, 4, "Kiosk Opfyldning", "Lørdag", "Hele dagen", []];
+let kioskRefillDay3 = [0, 4, "Kiosk Opfyldning", "Søndag", "Hele dagen", []];
 
 /** Cleaning inside */
-let cleaningInsideDay2 = [0, 7, "Rengøring Indendørs", "Søndag"];
-let cleaningInsideDay3 = [0, 7, "Rengøring Indendørs", "Mandag"];
-let cleaningInsideDay4 = [0, 7, "Rengøring Indendørs", "Tirsdag"];
-
-/** Breakfast */
-let breakfastDay2 = [0, 6, "Morgenmad", "Søndag"];
-let breakfastDay3 = [0, 6, "Morgenmad", "Mandag"];
-let breakfastDay4 = [0, 6, "Morgenmad", "Tirsdag"];
-
-/** Lunch dishes */
-let dishesLunchDay2 = [0, 6, "Frokost Opvask", "Søndag"];
-let dishesLunchDay3 = [0, 6, "Frokost Opvask", "Mandag"];
-
-/** Dinner cooking */
-let cookingDinnerDay2 = [0, 10, "Aftensmad Tilberedning", "Søndag"];
-let cookingDinnerDay3 = [0, 10, "Aftensmad Tilberedning", "Mandag"];
-
-/** Dinner dishes */
-let dishesDinnerDay2 = [0, 10, "Aftensmad Opvask", "Søndag"];
-let dishesDinnerDay3 = [0, 10, "Aftensmad Opvask", "Mandag"];
+let cleaningInsideDay2 = [0, 7, "Rengøring Indendørs", "Lørdag", "TIDSPUNKT", []];
+let cleaningInsideDay3 = [0, 7, "Rengøring Indendørs", "Søndag", "TIDSPUNKT", []];
 
 /** Cleaning outside */
-let cleaningOutsideDay2 = [0, 10, "Rengøring Yderområder", "Søndag"];
-let cleaningOutsideDay3 = [0, 10, "Rengøring Yderområder", "Mandag"];
+let cleaningOutsideDay2 = [0, 10, "Rengøring Yderområder", "Lørdag", "TIDSPUNKT", []];
+let cleaningOutsideDay3 = [0, 10, "Rengøring Yderområder", "Sændag", "TIDSPUNKT", []];
+
+/** Breakfast */
+let breakfastDay2 = [0, 6, "Morgenmad", "Lørdag", "TIDSPUNKT", []];
+let breakfastDay3 = [0, 6, "Morgenmad", "Søndag", "TIDSPUNKT", []];
+let breakfastDay4 = [0, 6, "Morgenmad", "Mandag", "TIDSPUNKT", []];
+
+/** Lunch dishes */
+let dishesLunchDay2 = [0, 6, "Frokost Opvask", "Lørdag", "TIDSPUNKT", []];
+let dishesLunchDay3 = [0, 6, "Frokost Opvask", "Søndag", "TIDSPUNKT", []];
+
+/** Dinner cooking */
+let cookingDinnerDay2 = [0, 10, "Aftensmad Tilberedning", "Lørdag", "", []];
+let cookingDinnerDay3 = [0, 10, "Aftensmad Tilberedning", "Søndag", "", []];
+
+/** Dinner dishes */
+let dishesDinnerDay2 = [0, 10, "Aftensmad Opvask", "Lørdag", "TIDSPUNKT", []];
+let dishesDinnerDay3 = [0, 10, "Aftensmad Opvask", "Søndag", "TIDSPUNKT", []];
 
 /** Final cleaning */
-const finalCleaningKitchen = [0, 15, "Køkken"];
-const finalCleaningOutside = [0, 40, "Udenfor"];
-const finalCleaningInside = [0, 35, "Indenfor"];
+const finalCleaningKitchen = [0, 15, "Køkken", "Mandag", "09:00", []];
+const finalCleaningOutside = [0, 40, "Udenfor", "Mandag", "09:00", []];
+const finalCleaningInside = [0, 35, "Indenfor", "Mandag", "09:00", []];
 
-const listDifferentChores = [kioskRefillDay1, kioskRefillDay2, kioskRefillDay3, cleaningInsideDay2, cleaningInsideDay3, cleaningInsideDay4, breakfastDay2, breakfastDay3, breakfastDay4, dishesLunchDay2, dishesLunchDay3, cookingDinnerDay2, cookingDinnerDay3, dishesDinnerDay2, dishesDinnerDay3, cleaningOutsideDay2, cleaningOutsideDay3];
+const listKioskRefill = [kioskRefillDay1, kioskRefillDay2, kioskRefillDay3];
+const listCleaningInside = [cleaningInsideDay2, cleaningInsideDay3];
+const listCleaningOutside = [cleaningOutsideDay2, cleaningOutsideDay3];
+const listBreakfast = [breakfastDay2, breakfastDay3, breakfastDay4];
+const listDishesLunch = [dishesLunchDay2, dishesLunchDay3];
+const listCookingDinner = [cookingDinnerDay2, cookingDinnerDay3];
+const listDishesDinner = [dishesDinnerDay2, dishesDinnerDay3];
+
+const listDifferentChores = [kioskRefillDay1, kioskRefillDay2, kioskRefillDay3, cleaningInsideDay2, cleaningInsideDay3, breakfastDay2, breakfastDay3, breakfastDay4, dishesLunchDay2, dishesLunchDay3, cookingDinnerDay2, cookingDinnerDay3, dishesDinnerDay2, dishesDinnerDay3, cleaningOutsideDay2, cleaningOutsideDay3];
 const listDifferentFinalCleaning = [finalCleaningKitchen, finalCleaningOutside, finalCleaningInside];
 const amountDifferentChores = listDifferentChores.length;
 const amountDifferentFinalCleaning = listDifferentFinalCleaning.length;
 
 /** Cabins */
-let cabinA1 = [0, 9, "Hytte A1"];
-let cabinA2 = [0, 9, "Hytte A2"];
-let cabinB1 = [0, 9, "Hytte B1"];
-let cabinB2 = [0, 9, "Hytte B2"];
-let cabinC1 = [0, 9, "Hytte C1"];
-let cabinC2 = [0, 9, "Hytte C2"];
-let cabinD1 = [0, 9, "Hytte D1"];
-let cabinD2 = [0, 9, "Hytte D2"];
-const cabinE = [0, 20, "Hytte E"];
+let cabinA1 = [0, 9, "Hytte A1", []];
+let cabinA2 = [0, 9, "Hytte A2", []];
+let cabinB1 = [0, 9, "Hytte B1", []];
+let cabinB2 = [0, 9, "Hytte B2", []];
+let cabinC1 = [0, 9, "Hytte C1", []];
+let cabinC2 = [0, 9, "Hytte C2", []];
+let cabinD1 = [0, 9, "Hytte D1", []];
+let cabinD2 = [0, 9, "Hytte D2", []];
+const cabinE = [0, 20, "Hytte E", []];
 const listOfMaleCabins = [cabinA1, cabinA2, cabinB1, cabinB2, cabinC1, cabinC2, cabinD1, cabinD2];
 const listOfFemaleCabins = [cabinE];
 const amountOfMaleCabins = listOfMaleCabins.length;
@@ -70,9 +82,11 @@ function distributeBuses() {
 	let participants = JSON.parse(sessionStorage.getItem("Participants"));
 	for (let i = 0; i < participants.length; i++) {
 		if ((i % 2) === 0) {
-			participants[i].Bus = Bus1;
+			participants[i].Bus = Bus1[0];
+			Bus1[1].push(participants[i].Name)
 		} else {
-			participants[i].Bus = Bus2;
+			participants[i].Bus = Bus2[0];
+			Bus2[1].push(participants[i].Name)
 		}
 	}
 	console.log("Distributed all buses successfully, see list below");
@@ -106,6 +120,7 @@ function distributeFinalCleaning() {
 			if (chosenFinalCleaning[0] < chosenFinalCleaning[1]) {
 				participants[i].FinalCleaning = chosenFinalCleaning[2];
 				chosenFinalCleaning[0]++;
+				chosenFinalCleaning[5].push(participants[i].Name);
 				finalCleaningAssigned = true;
 			}
 		}
@@ -162,6 +177,7 @@ function distributeCabins() {
 				if (chosenFemaleCabin[0] < chosenFemaleCabin[1]) {
 					participants[i].Cabin = chosenFemaleCabin[2];
 					chosenFemaleCabin[0]++;
+					chosenFemaleCabin[3].push(participants[i].Name);
 					cabinAssigned = true;
 				}
 			}
@@ -175,6 +191,7 @@ function distributeCabins() {
 				if (chosenMaleCabin[0] < chosenMaleCabin[1]) {
 					participants[i].Cabin = chosenMaleCabin[2];
 					chosenMaleCabin[0]++;
+					chosenMaleCabin[3].push(participants[i].Name);
 					cabinAssigned = true;
 				}
 			}
@@ -216,6 +233,7 @@ function distributeFirstChores() {
 				participants[i].Chore1 = chosenChore[2];
 				participants[i].Chore1Day = chosenChore[3];
 				chosenChore[0]++;
+				chosenChore[5].push(participants[i].Name);
 				choreAssigned = true;
 			}
 		}
@@ -227,7 +245,7 @@ function distributeFirstChores() {
 
 function distributeSecondChores() {
 	let participants = JSON.parse(sessionStorage.getItem("Participants"));
-	for (let i = 0; i < participants.length; i++) {
+	for (let i = participants.length - 1; i > 0; i--) {
 		let choreAssigned = false;
 		if (!checkIfAnyAvailableChores()) {
 			console.warn("No chores available! Breaking out!");
@@ -235,12 +253,12 @@ function distributeSecondChores() {
 		}
 		while (!choreAssigned && checkIfAnyAvailableChores()) {
 			for (let j = 0; j < listDifferentChores.length; j++) {
-				console.log("We're in here");
 				if (listDifferentChores[j][0] < listDifferentChores[j][1] && listDifferentChores[j][3] !== participants[i].Chore1Day) {
 					choreAssigned = true;
 					listDifferentChores[j][0]++;
 					participants[i].Chore2Day = listDifferentChores[j][3];
 					participants[i].Chore2 = listDifferentChores[j][2];
+					listDifferentChores[j][5].push(participants[i].Name);
 				}
 			}
 			if (!choreAssigned) {
@@ -248,6 +266,7 @@ function distributeSecondChores() {
 				choreAssigned = true;
 			}
 		}
+		i -= Math.floor(Math.random() * 3);
 	}
 	console.log("Distributed all chores successfully (SECOND TIME), see list below");
 	console.log("Chores: ", listDifferentChores);

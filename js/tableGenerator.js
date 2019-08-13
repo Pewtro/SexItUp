@@ -1,10 +1,6 @@
 function generateTable() {
 	let participants = JSON.parse(sessionStorage.getItem("Participants"));
 
-	for (let i = 0; i < participants.length; i++) {
-		console.log(participants[i].Name);
-	}
-
 	const div = document.getElementById("tableContent");
 	const table = document.createElement("table");
 
@@ -12,7 +8,7 @@ function generateTable() {
 
 	table.style.width = "100%";
 
-	let headers = ["Navn", "Bus", "Cabin", "Chore & Day", "Chore 2 & Day", "Final Cleaning"];
+	let headers = ["Name", "Bus", "Cabin", "Chore & Day", "Chore 2 & Day", "Final Cleaning"];
 
 	const row = table.insertRow(0);
 
