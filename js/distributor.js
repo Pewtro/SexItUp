@@ -17,21 +17,21 @@ let kioskRefillDay2 = [0, 4, "Kiosk Opfyldning", "Lørdag", "Hele dagen", []];
 let kioskRefillDay3 = [0, 4, "Kiosk Opfyldning", "Søndag", "Hele dagen", []];
 
 /** Cleaning inside */
-let cleaningInsideDay2 = [0, 7, "Rengøring Indendørs", "Lørdag", "TIDSPUNKT", []];
-let cleaningInsideDay3 = [0, 7, "Rengøring Indendørs", "Søndag", "TIDSPUNKT", []];
+let cleaningInsideDay2 = [0, 8, "Rengøring Indendørs", "Lørdag", "TIDSPUNKT", []];
+let cleaningInsideDay3 = [0, 8, "Rengøring Indendørs", "Søndag", "TIDSPUNKT", []];
 
 /** Cleaning outside */
 let cleaningOutsideDay2 = [0, 10, "Rengøring Yderområder", "Lørdag", "TIDSPUNKT", []];
 let cleaningOutsideDay3 = [0, 10, "Rengøring Yderområder", "Sændag", "TIDSPUNKT", []];
 
 /** Breakfast */
-let breakfastDay2 = [0, 6, "Morgenmad", "Lørdag", "TIDSPUNKT", []];
-let breakfastDay3 = [0, 6, "Morgenmad", "Søndag", "TIDSPUNKT", []];
-let breakfastDay4 = [0, 6, "Morgenmad", "Mandag", "TIDSPUNKT", []];
+let breakfastDay2 = [0, 8, "Morgenmad", "Lørdag", "TIDSPUNKT", []];
+let breakfastDay3 = [0, 8, "Morgenmad", "Søndag", "TIDSPUNKT", []];
+let breakfastDay4 = [0, 8, "Morgenmad", "Mandag", "TIDSPUNKT", []];
 
 /** Lunch dishes */
-let dishesLunchDay2 = [0, 6, "Frokost Opvask", "Lørdag", "TIDSPUNKT", []];
-let dishesLunchDay3 = [0, 6, "Frokost Opvask", "Søndag", "TIDSPUNKT", []];
+let dishesLunchDay2 = [0, 8, "Frokost Opvask", "Lørdag", "TIDSPUNKT", []];
+let dishesLunchDay3 = [0, 8, "Frokost Opvask", "Søndag", "TIDSPUNKT", []];
 
 /** Dinner cooking */
 let cookingDinnerDay2 = [0, 10, "Aftensmad Tilberedning", "Lørdag", "", []];

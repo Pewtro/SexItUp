@@ -244,7 +244,7 @@ function genList() {
 		doc.text(horizontal, vertical, "Slutrengøring " + listDifferentFinalCleaning[i][2]);
 		vertical += 10;
 		doc.setFontSize(20);
-		doc.text(horizontal, vertical, "Mødetid: " + listDifferentFinalCleaning[i][4]);
+		doc.text(horizontal, vertical, listDifferentFinalCleaning[i][3] + " - Mødetid: " + listDifferentFinalCleaning[i][4]);
 		doc.setFontSize(10);
 		for (let j = 0; j < listDifferentFinalCleaning[i][5].length; j++) {
 			if ((j % 2) === 0) {
@@ -282,10 +282,8 @@ function genList() {
 			doc.text(horizontal, vertical, listOfMaleCabins[i][3][j])
 		}
 	}
-	/** NEW PAGE */
-	doc.addPage();
-
 	//Female Cabins
+	doc.addPage();
 	horizontal = 5;
 	vertical = 10;
 	doc.setFontSize(30);
@@ -297,9 +295,8 @@ function genList() {
 	}
 
 	/** Buses */
-	/** NEW PAGE */
-	doc.addPage();
 //Bus 1
+	doc.addPage();
 	horizontal = 5;
 	vertical = 10;
 	doc.setFontSize(30);
@@ -315,9 +312,8 @@ function genList() {
 			doc.text(horizontal, vertical, Bus1[1][i])
 		}
 	}
-	/** NEW PAGE */
-	doc.addPage();
 //Bus 2
+	doc.addPage();
 	horizontal = 5;
 	vertical = 10;
 	doc.setFontSize(30);
