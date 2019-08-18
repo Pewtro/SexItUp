@@ -1,6 +1,6 @@
 /** The names of the busses */
-const Bus1 = ["Afterski", []];
-const Bus2 = ["Til søs", []];
+const Bus1 = ["Alperne", []];
+const Bus2 = ["Mod fjerne kyster", []];
 const listOfBuses = [Bus1, Bus2];
 
 /**
