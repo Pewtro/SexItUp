@@ -19,27 +19,27 @@ function genPDF() {
 			doc.text(150, 57, data[i].Cabin);
 			doc.text(150, 71, 'TJANSER:');
 			doc.text(150, 91, 'SLUTRENGØRING:');
-			doc.text(150, 95, data[i].FinalCleaning);
+			doc.text(150, 95, data[i].FinalCleaning + " - " + finalCleaningOutside[4]);
 			doc.setFontSize(8);
 			doc.text(150, 75, data[i].Chore1);
-			doc.text(150, 79, data[i].Chore1Day);
+			doc.text(150, 79, data[i].Chore1Day + " - " + data[i].Chore1Time);
 			doc.text(150, 83, data[i].Chore2);
-			doc.text(150, 87, data[i].Chore2Day);
+			doc.text(150, 87, data[i].Chore2Day ? data[i].Chore2Day + " - " + data[i].Chore2Time : "");
 		} else if (counter === 2) {
 			doc.setFontSize(10);
-			doc.addImage(imgData, 'JPEG', 15, 105, 180, 80);
-			doc.text(33, 168, data[i].Name);
-			doc.text(33, 156, 'DIT-LAB');
-			doc.text(87, 156, data[i].Bus);
-			doc.text(150, 132, data[i].Cabin);
-			doc.text(150, 146, 'TJANSER:');
-			doc.text(150, 166, 'SLUTRENGØRING:');
-			doc.text(150, 170, data[i].FinalCleaning);
+			doc.addImage(imgData, 'JPEG', 15, 110, 180, 80);
+			doc.text(33, 173, data[i].Name);
+			doc.text(33, 161, 'DIT-LAB');
+			doc.text(87, 161, data[i].Bus);
+			doc.text(150, 137, data[i].Cabin);
+			doc.text(150, 151, 'TJANSER:');
+			doc.text(150, 171, 'SLUTRENGØRING:');
+			doc.text(150, 175, data[i].FinalCleaning + " - " + finalCleaningOutside[4]);
 			doc.setFontSize(8);
-			doc.text(150, 150, data[i].Chore1);
-			doc.text(150, 154, data[i].Chore1Day);
-			doc.text(150, 158, data[i].Chore2);
-			doc.text(150, 162, data[i].Chore2Day);
+			doc.text(150, 155, data[i].Chore1);
+			doc.text(150, 159, data[i].Chore1Day + " - " + data[i].Chore1Time);
+			doc.text(150, 163, data[i].Chore2);
+			doc.text(150, 167, data[i].Chore2Day ? data[i].Chore2Day + " - " + data[i].Chore2Time : "");
 		} else if (counter === 3) {
 			doc.setFontSize(10);
 			doc.addImage(imgData, 'JPEG', 15, 190, 180, 80);
@@ -49,12 +49,12 @@ function genPDF() {
 			doc.text(150, 217, data[i].Cabin);
 			doc.text(150, 231, 'TJANSER:');
 			doc.text(150, 251, 'SLUTRENGØRING:');
-			doc.text(150, 255, data[i].FinalCleaning);
+			doc.text(150, 255, data[i].FinalCleaning + " - " + finalCleaningOutside[4]);
 			doc.setFontSize(8);
 			doc.text(150, 235, data[i].Chore1);
-			doc.text(150, 239, data[i].Chore1Day);
+			doc.text(150, 239, data[i].Chore1Day + " - " + data[i].Chore1Time);
 			doc.text(150, 243, data[i].Chore2);
-			doc.text(150, 247, data[i].Chore2Day);
+			doc.text(150, 247, data[i].Chore2Day ? data[i].Chore2Day + " - " + data[i].Chore2Time : "");
 			counter = 0;
 			doc.addPage();
 		}
@@ -64,7 +64,7 @@ function genPDF() {
 
 /** Generates a list with all information about the participants
  * Includes:
- * Busses DONE
+ * Buses DONE
  * Cabins DONE
  * Chores 1 and 2 (Including DAY and TIME?)
  * FinalCleaning

@@ -68,8 +68,10 @@ function processData(csv) {
 			Cabin: '',
 			Chore1: '',
 			Chore1Day: '',
+			Chore1Time: '',
 			Chore2: '',
 			Chore2Day: '',
+			Chore2Time: '',
 			FinalCleaning: '',
 		});
 	}

@@ -34,8 +34,8 @@ let dishesLunchDay2 = [0, 8, "Frokost Opvask", "Lørdag", "TIDSPUNKT", []];
 let dishesLunchDay3 = [0, 8, "Frokost Opvask", "Søndag", "TIDSPUNKT", []];
 
 /** Dinner cooking */
-let cookingDinnerDay2 = [0, 10, "Aftensmad Tilberedning", "Lørdag", "", []];
-let cookingDinnerDay3 = [0, 10, "Aftensmad Tilberedning", "Søndag", "", []];
+let cookingDinnerDay2 = [0, 10, "Aftensmad Tilberedning", "Lørdag", "TIDSPUNKT", []];
+let cookingDinnerDay3 = [0, 10, "Aftensmad Tilberedning", "Søndag", "TIDSPUNKT", []];
 
 /** Dinner dishes */
 let dishesDinnerDay2 = [0, 10, "Aftensmad Opvask", "Lørdag", "TIDSPUNKT", []];
@@ -68,9 +68,10 @@ let cabinC1 = [0, 9, "Hytte C1", []];
 let cabinC2 = [0, 9, "Hytte C2", []];
 let cabinD1 = [0, 9, "Hytte D1", []];
 let cabinD2 = [0, 9, "Hytte D2", []];
-const cabinE = [0, 20, "Hytte E", []];
-const listOfMaleCabins = [cabinA1, cabinA2, cabinB1, cabinB2, cabinC1, cabinC2, cabinD1, cabinD2];
-const listOfFemaleCabins = [cabinE];
+let cabinE = [0, 20, "Hytte E", []];
+let cabinF = [0, 30, "Hytte F", []];
+const listOfMaleCabins = [cabinC1, cabinC2, cabinD1, cabinD2, cabinE,cabinF];
+const listOfFemaleCabins = [cabinA1, cabinA2, cabinB1, cabinB2];
 const amountOfMaleCabins = listOfMaleCabins.length;
 const amountOfFemaleCabins = listOfFemaleCabins.length;
 
@@ -232,6 +233,7 @@ function distributeFirstChores() {
 			if (chosenChore[0] < chosenChore[1]) {
 				participants[i].Chore1 = chosenChore[2];
 				participants[i].Chore1Day = chosenChore[3];
+				participants[i].Chore1Time = chosenChore[4];
 				chosenChore[0]++;
 				chosenChore[5].push(participants[i].Name);
 				choreAssigned = true;
@@ -256,8 +258,9 @@ function distributeSecondChores() {
 				if (listDifferentChores[j][0] < listDifferentChores[j][1] && listDifferentChores[j][3] !== participants[i].Chore1Day) {
 					choreAssigned = true;
 					listDifferentChores[j][0]++;
-					participants[i].Chore2Day = listDifferentChores[j][3];
 					participants[i].Chore2 = listDifferentChores[j][2];
+					participants[i].Chore2Day = listDifferentChores[j][3];
+					participants[i].Chore2Time = listDifferentChores[j][4];
 					listDifferentChores[j][5].push(participants[i].Name);
 				}
 			}
