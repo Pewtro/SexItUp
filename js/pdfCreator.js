@@ -17,6 +17,8 @@ function genPDF() {
 			doc.text(33, 81, 'DIT-LAB');
 			doc.text(87, 81, data[i].Bus);
 			doc.text(150, 57, data[i].Cabin);
+			doc.text(100, 57, 'PIN:');
+			doc.text(113, 57, data[i].PinCode);
 			doc.text(150, 71, 'TJANSER:');
 			doc.text(150, 91, 'SLUTRENGØRING:');
 			doc.text(150, 95, data[i].FinalCleaning + " - " + finalCleaningOutside[4]);
@@ -32,6 +34,8 @@ function genPDF() {
 			doc.text(33, 161, 'DIT-LAB');
 			doc.text(87, 161, data[i].Bus);
 			doc.text(150, 137, data[i].Cabin);
+			doc.text(100, 137, 'PIN:');
+			doc.text(113, 137, data[i].PinCode);
 			doc.text(150, 151, 'TJANSER:');
 			doc.text(150, 171, 'SLUTRENGØRING:');
 			doc.text(150, 175, data[i].FinalCleaning + " - " + finalCleaningOutside[4]);
@@ -47,6 +51,8 @@ function genPDF() {
 			doc.text(33, 241, 'DIT-LAB');
 			doc.text(87, 241, data[i].Bus);
 			doc.text(150, 217, data[i].Cabin);
+			doc.text(100, 217, 'PIN:');
+			doc.text(113, 217, data[i].PinCode);
 			doc.text(150, 231, 'TJANSER:');
 			doc.text(150, 251, 'SLUTRENGØRING:');
 			doc.text(150, 255, data[i].FinalCleaning + " - " + finalCleaningOutside[4]);

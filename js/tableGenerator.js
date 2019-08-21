@@ -8,7 +8,7 @@ function generateTable() {
 
 	table.style.width = "100%";
 
-	let headers = ["Name", "Bus", "Cabin", "Chore & Day", "Chore 2 & Day", "Final Cleaning"];
+	let headers = ["Name", "Bus", "Cabin", "Chore & Day", "Chore 2 & Day", "Final Cleaning", "Pin Code"];
 
 	const row = table.insertRow(0);
 
@@ -47,7 +47,9 @@ function generateTable() {
 				case 5:
 					value = participants[j].FinalCleaning;
 					break;
-
+				case 6:
+					value = participants[j].PinCode;
+					break;
 			}
 
 			td.innerText = value;

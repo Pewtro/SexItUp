@@ -59,6 +59,7 @@ const listDifferentFinalCleaning = [finalCleaningKitchen, finalCleaningOutside, 
 const amountDifferentChores = listDifferentChores.length;
 const amountDifferentFinalCleaning = listDifferentFinalCleaning.length;
 
+
 /** Cabins */
 let cabinA1 = [0, 9, "Hytte A1", []];
 let cabinA2 = [0, 9, "Hytte A2", []];
@@ -70,13 +71,43 @@ let cabinD1 = [0, 9, "Hytte D1", []];
 let cabinD2 = [0, 9, "Hytte D2", []];
 let cabinE = [0, 20, "Hytte E", []];
 let cabinF = [0, 30, "Hytte F", []];
-const listOfMaleCabins = [cabinC1, cabinC2, cabinD1, cabinD2, cabinE,cabinF];
+const listOfMaleCabins = [cabinC1, cabinC2, cabinD1, cabinD2, cabinE, cabinF];
 const listOfFemaleCabins = [cabinA1, cabinA2, cabinB1, cabinB2];
 const amountOfMaleCabins = listOfMaleCabins.length;
 const amountOfFemaleCabins = listOfFemaleCabins.length;
 
+let pinCodeList = [];
+
 function randomise(amount) {
 	return Math.floor(Math.random() * amount);
+}
+
+function pinCodeGenerator() {
+	let participants = JSON.parse(sessionStorage.getItem("Participants"));
+	let currentPinCode = 0;
+	for (let i = 0; i < participants.length; i++) {
+		const minimum = 1000;
+		const maximum = 9999;
+		currentPinCode = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+		let pinCodeIsUnique = false;
+		while (!pinCodeIsUnique) {
+			if (pinCodeList.includes(currentPinCode)) {
+				if (currentPinCode < 9999) {
+					currentPinCode++;
+				} else {
+					currentPinCode = 1000;
+				}
+			} else {
+				pinCodeIsUnique = true;
+				pinCodeList.push(currentPinCode);
+			}
+		}
+		if (pinCodeIsUnique) {
+			participants[i].PinCode = currentPinCode.toString();
+		}
+	}
+	console.log(participants);
+	sessionStorage.setItem("Participants", JSON.stringify(participants));
 }
 
 function distributeBuses() {
@@ -282,6 +313,7 @@ function distributeEverything() {
 	distributeFirstChores();
 	distributeSecondChores();
 	distributeFinalCleaning();
+	pinCodeGenerator();
 	generateTable();
 }
 

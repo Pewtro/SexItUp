@@ -73,6 +73,7 @@ function processData(csv) {
 			Chore2Day: '',
 			Chore2Time: '',
 			FinalCleaning: '',
+			PinCode: '',
 		});
 	}
 	console.log("Import successful! Below is a list of the participants:");
