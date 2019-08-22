@@ -22,7 +22,7 @@ let cleaningInsideDay3 = [0, 8, "Rengøring Indendørs", "Søndag", "Kl. 10.00",
 
 /** Cleaning outside */
 let cleaningOutsideDay2 = [0, 10, "Rengøring Yderområder", "Lørdag", "Kl. 10.00", []];
-let cleaningOutsideDay3 = [0, 10, "Rengøring Yderområder", "Sændag", "Kl. 10.00", []];
+let cleaningOutsideDay3 = [0, 10, "Rengøring Yderområder", "Søndag", "Kl. 10.00", []];
 
 /** Breakfast */
 let breakfastDay2 = [0, 8, "Morgenmad", "Lørdag", "Kl. 10.00", []];
