@@ -266,8 +266,25 @@ function genList() {
 		vertical = 10;
 		horizontal = 5;
 	}
+	console.log("WE HERE");
+	//Cabin F
+	horizontal = 5;
+	vertical = 10;
+	doc.setFontSize(30);
+	doc.text(horizontal, vertical, cabinF[2]);
+	doc.setFontSize(10);
+	for (let i = 0; i < cabinF[3].length; i++) {
+		vertical += 10;
+		doc.text(horizontal, vertical, cabinF[3][i])
+	}
+	doc.addPage();
+	vertical = 10;
+	horizontal = 5;
 	//Male Cabins
 	for (let i = 0; i < listOfMaleCabins.length; i++) {
+		if (listOfMaleCabins[i][2] === "Hytte F") {
+			continue;
+		}
 		if (i !== 0) {
 			if ((i % 4) === 0) {
 				doc.addPage();
@@ -288,16 +305,30 @@ function genList() {
 			doc.text(horizontal, vertical, listOfMaleCabins[i][3][j])
 		}
 	}
-	//Female Cabins
 	doc.addPage();
-	horizontal = 5;
 	vertical = 10;
-	doc.setFontSize(30);
-	doc.text(horizontal, vertical, cabinE[2]);
-	doc.setFontSize(10);
-	for (let i = 0; i < cabinE[3].length; i++) {
-		vertical += 10;
-		doc.text(horizontal, vertical, cabinE[3][i])
+	horizontal = 5;
+	//Female Cabins
+	for (let i = 0; i < listOfFemaleCabins.length; i++) {
+		if (i !== 0) {
+			if ((i % 4) === 0) {
+				doc.addPage();
+				horizontal = 5;
+				vertical = 10;
+			} else if ((i % 2) === 0) {
+				vertical = 10;
+				horizontal = 120;
+			} else {
+				vertical = 130;
+			}
+		}
+		doc.setFontSize(30);
+		doc.text(horizontal, vertical, listOfFemaleCabins[i][2]);
+		doc.setFontSize(10);
+		for (let j = 0; j < listOfFemaleCabins[i][3].length; j++) {
+			vertical += 10;
+			doc.text(horizontal, vertical, listOfFemaleCabins[i][3][j])
+		}
 	}
 
 	/** Buses */

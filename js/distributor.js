@@ -42,9 +42,9 @@ let dishesDinnerDay2 = [0, 10, "Aftensmad Opvask", "Lørdag", "Efter maden", []]
 let dishesDinnerDay3 = [0, 10, "Aftensmad Opvask", "Søndag", "Efter maden", []];
 
 /** Final cleaning */
-const finalCleaningKitchen = [0, 15, "Køkken", "Mandag", "09:30", []];
-const finalCleaningOutside = [0, 45, "Udenfor", "Mandag", "09:30", []];
-const finalCleaningInside = [0, 40, "Indenfor", "Mandag", "09:30", []];
+const finalCleaningKitchen = [0, 15, "Køkken", "Mandag", "Kl. 09:30", []];
+const finalCleaningOutside = [0, 45, "Udenfor", "Mandag", "Kl. 09:30", []];
+const finalCleaningInside = [0, 40, "Indenfor", "Mandag", "Kl. 09:30", []];
 
 const listKioskRefill = [kioskRefillDay1, kioskRefillDay2, kioskRefillDay3];
 const listCleaningInside = [cleaningInsideDay2, cleaningInsideDay3];
@@ -286,7 +286,7 @@ function distributeSecondChores() {
 		}
 		while (!choreAssigned && checkIfAnyAvailableChores()) {
 			for (let j = 0; j < listDifferentChores.length; j++) {
-				if (listDifferentChores[j][0] < listDifferentChores[j][1] && listDifferentChores[j][3] !== participants[i].Chore1Day) {
+				if (listDifferentChores[j][0] < listDifferentChores[j][1] && listDifferentChores[j][3] !== participants[i].Chore1Day && listDifferentChores[j][2] !== participants[i].Chore1) {
 					choreAssigned = true;
 					listDifferentChores[j][0]++;
 					participants[i].Chore2 = listDifferentChores[j][2];
